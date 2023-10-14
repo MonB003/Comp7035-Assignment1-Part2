@@ -96,6 +96,11 @@ test_sleep (int thread_cnt, int iterations)
   /* Wait long enough for all the threads to finish. */
   timer_sleep (100 + thread_cnt * iterations * 10 + 100);
 
+  /*
+  if everyone sleeping, run idle thread
+  when there is nothing to run, wait for some thread to wakeup from sleeping
+  */
+
   /* Acquire the output lock in case some rogue thread is still
      running. */
   lock_acquire (&test.output_lock);
